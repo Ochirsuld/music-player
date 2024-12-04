@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="img-audio">
+            <div class="image">
+                <img src="profile.jpg" alt="">
+            </div>
+            <div class="audio">
+                <h1>Gojo VS Sukuna</h1>
+                <p>24 December 2018</p>
+                <div class="track">
+                    <div class="playpause"><img class="play" src="play.png" alt="" onclick="playPause()"></div>
+                    <div class="music" id="waveform"></div>
+                </div>
+            </div>
+        </div>
+        <button>Buy Album</button>
+    </div>
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script>const wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: 'gray',
+        barWidth: 4,
+        height: 80,
+        resposive: true,
+        progressColor: '#87cefa',
+      })
+
+      wavesurfer.load("Lady Gaga - Judas (Lyrics).mp4")
+
+      const play = document.querySelector('.play')
+      function playPause(){
+        wavesurfer.playPause()
+        if(play.src.includes('play.png')){
+            play.src = "pause.png";
+        }
+        else{
+            play.src = "play.png"
+        }
+      }
+
+      wavesurfer.on('finish' , O=>{
+        play.src = "play.png"
+        wavesurfer.stop()
+      })
+    </script>
+</body>
+</html>
